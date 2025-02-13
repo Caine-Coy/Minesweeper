@@ -15,8 +15,14 @@ public class Main {
         processInput();
     }
     static void processInput(){
-        String input = awaitInput();
+        String input = awaitInput().toLowerCase();
+        String[] inputArr = input.split(" ");
+        String command = inputArr[0];
+        inputArr = inputArr[1].split(":");
+        int x = Integer.parseInt(inputArr[0]);
+        int y = Integer.parseInt(inputArr[1]);
 
+        System.out.println("DEBUG " + command + " " + x + " " + y);
     }
 
     static void startGame(){
