@@ -1,8 +1,13 @@
 package minesweeper;
 
-public class Display {
+import minesweeper.objects.Grid;
 
+public class Display {
     Display(){
+
+    }
+
+    public void drawGrid(){
 
     }
 }
