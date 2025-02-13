@@ -16,6 +16,10 @@ public class Grid {
             }
         }
     }
+
+    public void reveal(){
+
+    }
     public int getSize(){
         return gridMatrix.length;
     }
@@ -23,6 +27,8 @@ public class Grid {
     public Tile getTile(int x,int y){
         return gridMatrix[x][y];
     }
+
+
 
 
 }

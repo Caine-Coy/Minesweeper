@@ -13,4 +13,12 @@ public class Tile {
     public int getMineAdjacency(){
         return mineAdjacency;
     }
+
+    public void open(){
+        state = State.OPENED;
+    }
+
+    public void flag(){
+        state = State.FLAGGED;
+    }
 }
