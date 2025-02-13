@@ -13,7 +13,7 @@ public class Main {
     static Display display = new Display();
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Minesweeper.\n Coordinates Start At The Top Left ☺");
+        System.out.println("Welcome to Minesweeper.");
         startGame();
 
     }

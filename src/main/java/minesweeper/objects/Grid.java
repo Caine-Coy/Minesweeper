@@ -11,7 +11,7 @@ public class Grid {
 
     private void generateGrid(){
         for (int x = 0; x < getSize(); x++){
-            for (int y = 0; y < getSize(); y++){
+            for (int y = getSize()-1; y >= 0 ; y--){
                 gridMatrix[x][y] = new Tile();
             }
         }

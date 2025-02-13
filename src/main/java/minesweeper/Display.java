@@ -10,19 +10,7 @@ public class Display {
     }
     public void drawGrid(Grid grid){
 
-        for (int x = 0; x < grid.getSize();x++) {
-            if (x==0){
-                System.out.print("   ");
-            }
-            if (x<10){
-                System.out.print(x + " ");
-            }
-            else{
-                System.out.print(x);
-            }
-
-        }
-        for (int y = 0; y < grid.getSize();y++){
+        for (int y = grid.getSize()-1; y >= 0;y--){
 
             System.out.print("\n" + y + " ");
             if (y< 10){
@@ -50,6 +38,18 @@ public class Display {
                         break;
                 }
             }
+        }
+        for (int x = 0; x < grid.getSize();x++) {
+            if (x==0){
+                System.out.print("\n   ");
+            }
+            if (x<10){
+                System.out.print(x + " ");
+            }
+            else{
+                System.out.print(x);
+            }
+
         }
         System.out.println("\n(o)pen (f)lag X:Y");
     }
