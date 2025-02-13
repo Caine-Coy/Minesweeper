@@ -16,7 +16,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Minesweeper.");
         startGame();
-
     }
 
     static void processInput() {
@@ -45,8 +44,9 @@ public class Main {
                 }
                 update();
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             System.out.println("Invalid Command. Please Try Again");
+            update();
         }
     }
 
@@ -57,12 +57,21 @@ public class Main {
     }
 
     static void startGame() {
-        System.out.println("How Many Rows/Columns Do You Want The Grid To Be?");
-        int size = Integer.parseInt(awaitInput());
-        System.out.println("How Many Mines Do You Want?");
-        int mines = Integer.parseInt(awaitInput());
-        grid = new Grid(size, mines);
-        update();
+        try {
+            System.out.println("How Many Rows/Columns Do You Want The Grid To Be?");
+            int size = Integer.parseInt(awaitInput());
+            if (size > 99){
+                throw new RuntimeException("Size too big!");
+            }
+            System.out.println("How Many Mines Do You Want?");
+            int mines = Integer.parseInt(awaitInput());
+            grid = new Grid(size, mines);
+            update();
+        }
+        catch (RuntimeException e){
+            System.out.println("ERROR!: " + e + "\nPlease Try Again");
+            startGame();
+        }
     }
 
     static void update() {
