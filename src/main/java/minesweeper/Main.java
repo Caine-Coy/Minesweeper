@@ -33,6 +33,7 @@ public class Main {
                 if (tile.isMine) {
                     endGame();
                 } else {
+
                     update();
                 }
             } else {

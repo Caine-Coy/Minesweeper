@@ -18,7 +18,11 @@ public class Grid {
     }
 
     public void reveal(){
-
+        for (int x = 0; x < getSize(); x++){
+            for (int y = getSize()-1; y >= 0; y--){
+                getTile(x,y).open();
+            }
+        }
     }
     public int getSize(){
         return gridMatrix.length;
