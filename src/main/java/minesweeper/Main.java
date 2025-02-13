@@ -1,6 +1,7 @@
 package minesweeper;
 
 import minesweeper.objects.Grid;
+import minesweeper.objects.State;
 import minesweeper.objects.Tile;
 
 import java.io.BufferedReader;
@@ -36,7 +37,12 @@ public class Main {
                     update();
                 }
             } else {
-                tile.flag();
+                if (tile.getState() != State.OPENED){
+                    tile.flag();
+                }
+                else {
+                    System.out.println("Tile is already open!");
+                }
                 update();
             }
         } catch (NumberFormatException e) {
