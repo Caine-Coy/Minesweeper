@@ -31,7 +31,7 @@ public class Display {
 
             for (int x = 0; x < grid.getSize(); x++){
 
-                Tile tile = grid.getMatrix()[x][y];
+                Tile tile = grid.getTile(x,y);
 
                 switch (tile.getState()){
                     case State.UNOPENED:

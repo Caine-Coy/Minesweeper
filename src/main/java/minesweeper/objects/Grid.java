@@ -20,7 +20,9 @@ public class Grid {
         return gridMatrix.length;
     }
 
-    public Tile[][] getMatrix(){
-        return gridMatrix;
+    public Tile getTile(int x,int y){
+        return gridMatrix[x][y];
     }
+
+
 }
