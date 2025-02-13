@@ -62,14 +62,14 @@ public class Main {
             System.out.println("How Many Rows/Columns Do You Want The Grid To Be?");
             int size = Integer.parseInt(awaitInput());
             if (size > 99){
-                throw new RuntimeException("Size too big!");
+                throw new Exception("Size too big!");
             }
             System.out.println("How Many Mines Do You Want?");
             int mines = Integer.parseInt(awaitInput());
             grid = new Grid(size, mines);
             update();
         }
-        catch (RuntimeException e){
+        catch (Exception e){
             System.out.println("ERROR!: " + e + "\nPlease Try Again");
             startGame();
         }

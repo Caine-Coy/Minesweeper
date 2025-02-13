@@ -26,7 +26,10 @@ public class Display {
                         System.out.print("◼ ");
                         break;
                     case State.OPENED:
-                        if (!tile.hasAdjacency) {
+                        if (tile.isMine){
+                            System.out.print("\uD83D\uDCA3");
+                        }
+                        else if (!tile.hasAdjacency) {
                             System.out.print("☐ ");
                         }
                         else{
