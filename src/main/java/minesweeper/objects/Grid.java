@@ -21,7 +21,6 @@ public class Grid {
                 gridMatrix[x][y] = new Tile(x, y);
             }
         }
-        placeMines();
     }
 
     /// @param flag o for open, a for adjacency
@@ -37,7 +36,7 @@ public class Grid {
                                 break;
                             case 'o':
                                 if (!adjTile.isMine() && adjTile.getState() == State.UNOPENED) {
-                                    if (adjTile.getMineAdjacency() <= 1) {
+                                    if (adjTile.getMineAdjacency() <= 1 && Math.abs(x) != Math.abs(y)) {
                                         adjTile.open();
                                         updateTilesSurrounding(adjTile, 'o');
                                     }
@@ -52,7 +51,7 @@ public class Grid {
         }
     }
 
-    private void placeMines() {
+    public void placeMines() {
         while (placedMines < mineAmount) {
             for (int x = 0; x < getSize(); x++) {
                 for (int y = getSize() - 1; y >= 0; y--) {
