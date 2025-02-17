@@ -35,8 +35,11 @@ public class Grid {
                                 adjTile.addMineAdjacency(1);
                                 break;
                             case 'o':
-                                if (!adjTile.isMine() && adjTile.getMineAdjacency() <= 1){
-                                    adjTile.open();
+                                if (!adjTile.isMine() && adjTile.getState() == State.UNOPENED){
+                                    if (adjTile.getMineAdjacency() <= 1){
+                                        adjTile.open();
+                                        updateTilesSurrounding(adjTile,'o');
+                                    }
                                 }
                                 break;
                             default:
