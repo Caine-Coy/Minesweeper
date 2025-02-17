@@ -82,6 +82,19 @@ public class Grid {
         return _minesRemaining;
     }
 
+    public int unopenedTilesRemaining(){
+        int _unopenedTiles = 0;
+        for (int x = 0; x < getSize(); x++) {
+            for (int y = getSize() - 1; y >= 0; y--) {
+                Tile _tile = getTile(x, y);
+                if (!_tile.isMine() && _tile.getState() == State.UNOPENED) {
+                    _unopenedTiles++;
+                }
+            }
+        }
+        return _unopenedTiles;
+    }
+
     /// used for gameend, shows the entire grid.
     public void reveal() {
         for (int x = 0; x < getSize(); x++) {
