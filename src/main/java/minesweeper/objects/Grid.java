@@ -23,16 +23,25 @@ public class Grid {
         }
         placeMines();
     }
-
-    private void updateTilesSurrounding(Tile tile) {
+    /// @param flag o for open, a for adjacency
+    public void updateTilesSurrounding(Tile tile, char flag) {
         for (int x = -1; x <= 1; x++) {
             if (tile.x + x >= 0 && tile.x + x < getSize()) {
                 for (int y = -1; y <= 1; y++) {
                     if (tile.y + y >= 0 && tile.y + y < getSize()) {
                         Tile adjTile = getTile(tile.x + x, tile.y + y);
-
-                        adjTile.addMineAdjacency(1);
-                        System.out.println("Tile Updated to " + adjTile.getMineAdjacency() + " at " + adjTile.x + ":" + adjTile.y);
+                        switch (flag){
+                            case 'a':
+                                adjTile.addMineAdjacency(1);
+                                break;
+                            case 'o':
+                                if (!adjTile.isMine() && adjTile.getMineAdjacency() <= 1){
+                                    adjTile.open();
+                                }
+                                break;
+                            default:
+                                System.out.println("Critical Error, Flag " + flag + " Unknown.");
+                        }
                     }
                 }
             }
@@ -47,8 +56,7 @@ public class Grid {
                     if (tile.state == State.UNOPENED && !tile.isMine() && placedMines < mineAmount) {
                         if (random.nextInt(0, getSize() * getSize()) == 0) {
                             tile.isMine = true;
-                            updateTilesSurrounding(tile);
-                            System.out.println("placed mine at " + x + ":" + y);
+                            updateTilesSurrounding(tile,'a');
                             placedMines++;
                         }
                     }

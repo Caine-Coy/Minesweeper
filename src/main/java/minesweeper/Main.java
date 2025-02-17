@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Main {
     static Grid grid;
     static Display display = new Display();
+    static boolean firstTurn = true;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Minesweeper.");
@@ -33,7 +34,7 @@ public class Main {
                 if (tile.isMine()) {
                     endGame();
                 } else {
-
+                    grid.updateTilesSurrounding(tile,'o');
                     update();
                 }
             } else {
