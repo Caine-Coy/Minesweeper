@@ -37,10 +37,9 @@ public class Main {
                     update();
                 }
             } else {
-                if (tile.getState() != State.OPENED){
+                if (tile.getState() != State.OPENED) {
                     tile.flag();
-                }
-                else {
+                } else {
                     System.out.println("Tile is already open!");
                 }
                 update();
@@ -61,15 +60,14 @@ public class Main {
         try {
             System.out.println("How Many Rows/Columns Do You Want The Grid To Be?");
             int size = Integer.parseInt(awaitInput());
-            if (size > 99){
+            if (size > 99) {
                 throw new Exception("Size too big!");
             }
             System.out.println("How Many Mines Do You Want?");
             int mines = Integer.parseInt(awaitInput());
             grid = new Grid(size, mines);
             update();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("ERROR!: " + e + "\nPlease Try Again");
             startGame();
         }

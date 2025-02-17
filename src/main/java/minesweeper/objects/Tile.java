@@ -8,23 +8,24 @@ public class Tile {
     public int x;
     public int y;
 
-    Tile(int _x,int _y){
+    Tile(int _x, int _y) {
         x = _x;
         y = _y;
     }
-    public State getState(){
+
+    public State getState() {
         return state;
     }
 
-    public int getMineAdjacency(){
+    public int getMineAdjacency() {
         return mineAdjacency;
     }
 
-    public void open(){
+    public void open() {
         state = State.OPENED;
     }
 
-    public void flag(){
+    public void flag() {
         state = State.FLAGGED;
     }
 
@@ -32,11 +33,11 @@ public class Tile {
         isMine = true;
     }
 
-    public boolean isMine(){
+    public boolean isMine() {
         return isMine;
     }
 
-    public void addMineAdjacency(int adjacency){
+    public void addMineAdjacency(int adjacency) {
         hasAdjacency = true;
         mineAdjacency += adjacency;
     }

@@ -1,6 +1,6 @@
 package minesweeper.objects;
 
-public enum State{
+public enum State {
     UNOPENED,
     OPENED,
     FLAGGED,

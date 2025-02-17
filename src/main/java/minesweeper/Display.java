@@ -5,34 +5,30 @@ import minesweeper.objects.State;
 import minesweeper.objects.Tile;
 
 public class Display {
-    Display(){
+    Display() {
 
     }
-    public void drawGrid(Grid grid){
 
-        for (int y = grid.getSize()-1; y >= 0;y--){
+    public void drawGrid(Grid grid) {
 
+        for (int y = grid.getSize() - 1; y >= 0; y--) {
             System.out.print("\n" + y + " ");
-            if (y< 10){
+            if (y < 10) {
                 System.out.print(" ");
             }
 
-            for (int x = 0; x < grid.getSize(); x++){
-
-                Tile tile = grid.getTile(x,y);
-
-                switch (tile.getState()){
+            for (int x = 0; x < grid.getSize(); x++) {
+                Tile tile = grid.getTile(x, y);
+                switch (tile.getState()) {
                     case State.UNOPENED:
                         System.out.print("◼ ");
                         break;
                     case State.OPENED:
-                        if (tile.isMine()){
+                        if (tile.isMine()) {
                             System.out.print("⚠ ");
-                        }
-                        else if (!tile.hasAdjacency) {
+                        } else if (!tile.hasAdjacency) {
                             System.out.print("☐ ");
-                        }
-                        else{
+                        } else {
                             System.out.print(tile.getMineAdjacency() + " ");
                         }
                         break;
@@ -42,14 +38,13 @@ public class Display {
                 }
             }
         }
-        for (int x = 0; x < grid.getSize();x++) {
-            if (x==0){
+        for (int x = 0; x < grid.getSize(); x++) {
+            if (x == 0) {
                 System.out.print("\n   ");
             }
-            if (x<10){
+            if (x < 10) {
                 System.out.print(x + " ");
-            }
-            else{
+            } else {
                 System.out.print(x);
             }
 
