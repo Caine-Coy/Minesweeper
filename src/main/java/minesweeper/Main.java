@@ -14,6 +14,7 @@ public class Main {
     static Display display = new Display();
     static boolean firstTurn = true;
     static boolean running = true;
+    static boolean alwaysCascade = true;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Minesweeper.");
@@ -42,7 +43,7 @@ public class Main {
                 }
                 if (tile.isMine()) {
                     endGame('l');
-                } else if (firstTurn) {
+                } else if (firstTurn || alwaysCascade) {
                     grid.updateTilesSurrounding(tile, 'o');
                     firstTurn = false;
                     update();
@@ -108,7 +109,7 @@ public class Main {
     }
 
     static void update() {
-        if (grid.minesRemaining() == 0 && !firstTurn) {
+        if (grid.minesRemaining() == 0 && !firstTurn && grid.unopenedTilesRemaining() == 0) {
             endGame('w');
         } else {
             display.drawGrid(grid);
