@@ -37,7 +37,7 @@ public class Main {
             Tile tile = grid.getTile(x, y);
             if (Objects.equals(command, "o")) {
                 tile.open();
-                if (firstTurn){
+                if (firstTurn) {
                     grid.placeMines();
                 }
                 if (tile.isMine()) {
@@ -45,8 +45,12 @@ public class Main {
                 } else if (firstTurn) {
                     grid.updateTilesSurrounding(tile, 'o');
                     firstTurn = false;
+                    update();
                 }
-                update();
+                else {
+                    update();
+                }
+
             } else {
                 if (tile.getState() != State.OPENED) {
                     tile.flag();
@@ -92,7 +96,7 @@ public class Main {
                 System.out.println("How Many Mines Do You Want?");
                 _mines = Integer.parseInt(awaitInput());
             } else {
-                _mines = (size*size) / 4;
+                _mines = (size * size) / 4;
             }
 
             grid = new Grid(size, _mines);
