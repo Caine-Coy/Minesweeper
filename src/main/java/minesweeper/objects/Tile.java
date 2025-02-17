@@ -26,7 +26,12 @@ public class Tile {
     }
 
     public void flag() {
-        state = State.FLAGGED;
+        if (state == State.FLAGGED){
+            state = State.UNOPENED;
+        }
+        else{
+            state = State.FLAGGED;
+        }
     }
 
     public void setMine() {

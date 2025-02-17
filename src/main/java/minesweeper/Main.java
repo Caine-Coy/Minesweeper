@@ -13,10 +13,19 @@ public class Main {
     static Grid grid;
     static Display display = new Display();
     static boolean firstTurn = true;
+    static boolean running = true;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Minesweeper.");
-        startGame();
+        while (running){
+            startGame();
+            System.out.println("Do You Want To Play Again? (y/n)");
+            if (!awaitInput().equalsIgnoreCase("y")){
+                running = false;
+            }
+        }
+
+
     }
 
     static void processInput() {
@@ -80,7 +89,7 @@ public class Main {
                 _mines = Integer.parseInt(awaitInput());
             }
             else{
-                _mines = (int) (size * 1.5);
+                _mines = size;
             }
 
             grid = new Grid(size, _mines);
