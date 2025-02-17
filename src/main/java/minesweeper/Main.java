@@ -91,7 +91,7 @@ public class Main {
                 System.out.println("How Many Mines Do You Want?");
                 _mines = Integer.parseInt(awaitInput());
             } else {
-                _mines = size;
+                _mines = (size*size) / 4;
             }
 
             grid = new Grid(size, _mines);
