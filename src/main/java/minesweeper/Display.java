@@ -21,13 +21,13 @@ public class Display {
                 Tile tile = grid.getTile(x, y);
                 switch (tile.getState()) {
                     case State.UNOPENED:
-                        System.out.print("◼ ");
+                        System.out.print("# ");
                         break;
                     case State.OPENED:
                         if (tile.isMine()) {
                             System.out.print("⚠ ");
                         } else if (!tile.hasAdjacency) {
-                            System.out.print("☐ ");
+                            System.out.print("O ");
                         } else {
                             System.out.print(tile.getMineAdjacency() + " ");
                         }
