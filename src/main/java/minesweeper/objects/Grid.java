@@ -36,8 +36,8 @@ public class Grid {
                                 break;
                             case 'o':
                                 if (!adjTile.isMine() && adjTile.getState() == State.UNOPENED) {
-                                    if (adjTile.getMineAdjacency() <= 1 && Math.abs(x) != Math.abs(y)) {
-                                        adjTile.open();
+                                    adjTile.open();
+                                    if (adjTile.getMineAdjacency() <= 1) {
                                         updateTilesSurrounding(adjTile, 'o');
                                     }
                                 }
