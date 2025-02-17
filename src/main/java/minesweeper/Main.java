@@ -42,10 +42,11 @@ public class Main {
                 }
                 if (tile.isMine()) {
                     endGame('l');
-                } else {
+                } else if (firstTurn) {
                     grid.updateTilesSurrounding(tile, 'o');
-                    update();
+                    firstTurn = false;
                 }
+                update();
             } else {
                 if (tile.getState() != State.OPENED) {
                     tile.flag();
