@@ -27,12 +27,11 @@ public class Main {
         try {
             int x = Integer.parseInt(inputArr[0]);
             int y = Integer.parseInt(inputArr[1]);
-            System.out.println("DEBUG " + command + " " + x + " " + y);
             Tile tile = grid.getTile(x, y);
             if (Objects.equals(command, "o")) {
                 tile.open();
                 if (tile.isMine()) {
-                    endGame();
+                    endGame('l');
                 } else {
                     grid.updateTilesSurrounding(tile,'o');
                     update();
@@ -50,10 +49,20 @@ public class Main {
             update();
         }
     }
-
-    static void endGame() {
+/// @param flag w for winning. l for losing
+    static void endGame(char flag) {
         grid.reveal();
         display.drawGrid(grid);
+        switch (flag){
+            case 'w':
+                System.out.println("YOU WIN! CONGRATS!");
+                break;
+            case 'l':
+                System.out.println("YOU HAVE LOST!");
+                break;
+            default:
+                System.out.println("UNEXPECTED ITEM IN FLAGGING AREA.");
+        }
         System.out.println("Thank you for playing!");
     }
 
@@ -64,9 +73,17 @@ public class Main {
             if (size > 99) {
                 throw new Exception("Size too big!");
             }
-            System.out.println("How Many Mines Do You Want?");
-            int mines = Integer.parseInt(awaitInput());
-            grid = new Grid(size, mines);
+            System.out.println("Do you want to chose how many mines? (y/n)");
+            int _mines;
+            if (awaitInput().equalsIgnoreCase("y")){
+                System.out.println("How Many Mines Do You Want?");
+                _mines = Integer.parseInt(awaitInput());
+            }
+            else{
+                _mines = (int) (size * 1.5);
+            }
+
+            grid = new Grid(size, _mines);
             update();
         } catch (Exception e) {
             System.out.println("ERROR!: " + e + "\nPlease Try Again");
@@ -75,8 +92,13 @@ public class Main {
     }
 
     static void update() {
-        display.drawGrid(grid);
-        processInput();
+        if (grid.minesRemaining() == 0){
+            endGame('w');
+        }
+        else {
+            display.drawGrid(grid);
+            processInput();
+        }
     }
 
     static String awaitInput() {

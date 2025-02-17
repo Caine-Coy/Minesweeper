@@ -43,7 +43,7 @@ public class Grid {
                                 }
                                 break;
                             default:
-                                System.out.println("Critical Error, Flag " + flag + " Unknown.");
+                                System.out.println("UNEXPECTED ITEM IN FLAGGING AREA.");
                         }
                     }
                 }
@@ -66,6 +66,19 @@ public class Grid {
                 }
             }
         }
+    }
+
+    public int minesRemaining(){
+        int _minesRemaining = 0;
+        for (int x = 0; x < getSize(); x++) {
+            for (int y = getSize() - 1; y >= 0; y--) {
+                Tile _tile = getTile(x, y);
+                if (_tile.isMine() && _tile.getState() != State.FLAGGED){
+                    _minesRemaining++;
+                }
+            }
+        }
+        return _minesRemaining;
     }
 
     public void reveal() {
