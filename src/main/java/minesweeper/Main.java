@@ -37,6 +37,9 @@ public class Main {
             Tile tile = grid.getTile(x, y);
             if (Objects.equals(command, "o")) {
                 tile.open();
+                if (firstTurn){
+                    grid.placeMines();
+                }
                 if (tile.isMine()) {
                     endGame('l');
                 } else {
@@ -76,6 +79,7 @@ public class Main {
 
     static void startGame() {
         try {
+            firstTurn = true;
             System.out.println("How Many Rows/Columns Do You Want The Grid To Be?");
             int size = Integer.parseInt(awaitInput());
             if (size > 99) {
@@ -99,7 +103,7 @@ public class Main {
     }
 
     static void update() {
-        if (grid.minesRemaining() == 0) {
+        if (grid.minesRemaining() == 0 && !firstTurn) {
             endGame('w');
         } else {
             display.drawGrid(grid);
