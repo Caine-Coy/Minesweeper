@@ -17,15 +17,13 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Minesweeper.");
-        while (running){
+        while (running) {
             startGame();
             System.out.println("Do You Want To Play Again? (y/n)");
-            if (!awaitInput().equalsIgnoreCase("y")){
+            if (!awaitInput().equalsIgnoreCase("y")) {
                 running = false;
             }
         }
-
-
     }
 
     static void processInput() {
@@ -42,7 +40,7 @@ public class Main {
                 if (tile.isMine()) {
                     endGame('l');
                 } else {
-                    grid.updateTilesSurrounding(tile,'o');
+                    grid.updateTilesSurrounding(tile, 'o');
                     update();
                 }
             } else {
@@ -58,11 +56,12 @@ public class Main {
             update();
         }
     }
-/// @param flag w for winning. l for losing
+
+    /// @param flag w for winning. l for losing
     static void endGame(char flag) {
         grid.reveal();
         display.drawGrid(grid);
-        switch (flag){
+        switch (flag) {
             case 'w':
                 System.out.println("YOU WIN! CONGRATS!");
                 break;
@@ -84,11 +83,10 @@ public class Main {
             }
             System.out.println("Do you want to chose how many mines? (y/n)");
             int _mines;
-            if (awaitInput().equalsIgnoreCase("y")){
+            if (awaitInput().equalsIgnoreCase("y")) {
                 System.out.println("How Many Mines Do You Want?");
                 _mines = Integer.parseInt(awaitInput());
-            }
-            else{
+            } else {
                 _mines = size;
             }
 
@@ -101,10 +99,9 @@ public class Main {
     }
 
     static void update() {
-        if (grid.minesRemaining() == 0){
+        if (grid.minesRemaining() == 0) {
             endGame('w');
-        }
-        else {
+        } else {
             display.drawGrid(grid);
             processInput();
         }
@@ -115,7 +112,6 @@ public class Main {
             BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
             return r.readLine();
         } catch (IOException _) {
-            //TODO error message
             return "";
         }
     }

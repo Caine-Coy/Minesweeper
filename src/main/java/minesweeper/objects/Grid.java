@@ -23,6 +23,7 @@ public class Grid {
         }
         placeMines();
     }
+
     /// @param flag o for open, a for adjacency
     public void updateTilesSurrounding(Tile tile, char flag) {
         for (int x = -1; x <= 1; x++) {
@@ -30,15 +31,15 @@ public class Grid {
                 for (int y = -1; y <= 1; y++) {
                     if (tile.y + y >= 0 && tile.y + y < getSize()) {
                         Tile adjTile = getTile(tile.x + x, tile.y + y);
-                        switch (flag){
+                        switch (flag) {
                             case 'a':
                                 adjTile.addMineAdjacency(1);
                                 break;
                             case 'o':
-                                if (!adjTile.isMine() && adjTile.getState() == State.UNOPENED){
-                                    if (adjTile.getMineAdjacency() <= 1){
+                                if (!adjTile.isMine() && adjTile.getState() == State.UNOPENED) {
+                                    if (adjTile.getMineAdjacency() <= 1) {
                                         adjTile.open();
-                                        updateTilesSurrounding(adjTile,'o');
+                                        updateTilesSurrounding(adjTile, 'o');
                                     }
                                 }
                                 break;
@@ -59,7 +60,7 @@ public class Grid {
                     if (tile.state == State.UNOPENED && !tile.isMine() && placedMines < mineAmount) {
                         if (random.nextInt(0, getSize() * getSize()) == 0) {
                             tile.isMine = true;
-                            updateTilesSurrounding(tile,'a');
+                            updateTilesSurrounding(tile, 'a');
                             placedMines++;
                         }
                     }
@@ -68,12 +69,13 @@ public class Grid {
         }
     }
 
-    public int minesRemaining(){
+    /// gets the amount of unflagged mines remaining.
+    public int minesRemaining() {
         int _minesRemaining = 0;
         for (int x = 0; x < getSize(); x++) {
             for (int y = getSize() - 1; y >= 0; y--) {
                 Tile _tile = getTile(x, y);
-                if (_tile.isMine() && _tile.getState() != State.FLAGGED){
+                if (_tile.isMine() && _tile.getState() != State.FLAGGED) {
                     _minesRemaining++;
                 }
             }
@@ -81,6 +83,7 @@ public class Grid {
         return _minesRemaining;
     }
 
+    /// used for gameend, shows the entire grid.
     public void reveal() {
         for (int x = 0; x < getSize(); x++) {
             for (int y = getSize() - 1; y >= 0; y--) {
