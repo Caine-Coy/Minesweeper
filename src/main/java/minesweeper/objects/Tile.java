@@ -3,9 +3,15 @@ package minesweeper.objects;
 public class Tile {
     State state = State.UNOPENED;
     int mineAdjacency = 0;
-    public boolean isMine = false;
+    boolean isMine = false;
     public boolean hasAdjacency = false;
+    public int x;
+    public int y;
 
+    Tile(int _x,int _y){
+        x = _x;
+        y = _y;
+    }
     public State getState(){
         return state;
     }
@@ -20,5 +26,18 @@ public class Tile {
 
     public void flag(){
         state = State.FLAGGED;
+    }
+
+    public void setMine() {
+        isMine = true;
+    }
+
+    public boolean isMine(){
+        return isMine;
+    }
+
+    public void addMineAdjacency(int adjacency){
+        hasAdjacency = true;
+        mineAdjacency += adjacency;
     }
 }

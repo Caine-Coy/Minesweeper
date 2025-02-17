@@ -30,7 +30,7 @@ public class Main {
             Tile tile = grid.getTile(x, y);
             if (Objects.equals(command, "o")) {
                 tile.open();
-                if (tile.isMine) {
+                if (tile.isMine()) {
                     endGame();
                 } else {
 
