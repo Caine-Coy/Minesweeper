@@ -12,7 +12,7 @@ public class Display {
     public void drawGrid(Grid grid) {
 
         for (int y = grid.getSize() - 1; y >= 0; y--) {
-            System.out.print("\n" + y + " ");
+            System.out.print("\n" + y + "   ");
             if (y < 10) {
                 System.out.print(" ");
             }
@@ -40,7 +40,7 @@ public class Display {
         }
         for (int x = 0; x < grid.getSize(); x++) {
             if (x == 0) {
-                System.out.print("\n   ");
+                System.out.print("\n\n     ");
             }
             if (x < 10) {
                 System.out.print(x + " ");
