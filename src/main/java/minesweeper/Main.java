@@ -16,7 +16,7 @@ public class Main {
     static boolean running = true;
     //Settings
     static boolean alwaysCascade = true;
-    static final int maxGridSize = 99;
+    static final int maxGridSize = 25;
     static final int minGridSize = 2;
 
     public static void main(String[] args) {
@@ -91,7 +91,7 @@ public class Main {
             firstTurn = true;
             System.out.println("How Many Rows/Columns Do You Want The Grid To Be?");
             int _size = Integer.parseInt(awaitInput());
-            if (_size >= maxGridSize) {
+            if (_size > maxGridSize) {
                 throw new Exception("Size too big!");
             }
             if (_size < minGridSize) {
