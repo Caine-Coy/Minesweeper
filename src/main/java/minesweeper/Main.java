@@ -90,32 +90,50 @@ public class Main {
         try {
             firstTurn = true;
             System.out.println("How Many Rows/Columns Do You Want The Grid To Be?");
-            int size = Integer.parseInt(awaitInput());
-            if (size >= maxGridSize) {
+            int _size = Integer.parseInt(awaitInput());
+            if (_size >= maxGridSize) {
                 throw new Exception("Size too big!");
             }
-            if (size < minGridSize) {
+            if (_size < minGridSize) {
                 throw new Exception("Size too small!");
             }
 
             System.out.println("Do you want to chose how many mines? (y/n)");
             int _mines;
-            if (awaitInput().equalsIgnoreCase("y")) {
+            String _input = awaitInput();
+            if (_input.equalsIgnoreCase("y")) {
                 System.out.println("How Many Mines Do You Want?");
                 _mines = Integer.parseInt(awaitInput());
-                if (_mines >= size*size){
-                    throw new Exception("Too many mines! " + _mines + " Out Of " + (size*size) + " Tiles!");
-                }
-            } else {
-                _mines = (size * size) / 4;
             }
-            grid = new Grid(size, _mines);
+            else if (isStringInt(_input)){
+                _mines = Integer.parseInt(_input);
+            } else {
+                System.out.println("Setting Mines To Default Amount.");
+                _mines = (_size * _size) / 4;
+            }
+            if (!validateMineAmount(_mines,_size)) throw new Exception("Too many mines! " + _mines + " Mines Out Of " + (_size*_size) + " Tiles!");
+            grid = new Grid(_size, _mines);
             update();
 
         } catch (Exception e) {
             System.out.println("ERROR!: " + e + "\nPlease Try Again");
             startGame();
         }
+    }
+
+    static boolean isStringInt(String _string){
+        try
+        {
+            Integer.parseInt(_string);
+            return true;
+        } catch (NumberFormatException ex)
+        {
+            return false;
+        }
+    }
+
+    static boolean validateMineAmount(int _mines,int _size){
+        return _mines < _size * _size;
     }
 
     static void update() {
