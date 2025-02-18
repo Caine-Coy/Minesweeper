@@ -14,7 +14,10 @@ public class Main {
     static Display display = new Display();
     static boolean firstTurn = true;
     static boolean running = true;
+    //Settings
     static boolean alwaysCascade = true;
+    static final int maxGridSize = 99;
+    static final int minGridSize = 2;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Minesweeper.");
@@ -88,20 +91,27 @@ public class Main {
             firstTurn = true;
             System.out.println("How Many Rows/Columns Do You Want The Grid To Be?");
             int size = Integer.parseInt(awaitInput());
-            if (size > 99) {
+            if (size >= maxGridSize) {
                 throw new Exception("Size too big!");
             }
+            if (size < minGridSize) {
+                throw new Exception("Size too small!");
+            }
+
             System.out.println("Do you want to chose how many mines? (y/n)");
             int _mines;
             if (awaitInput().equalsIgnoreCase("y")) {
                 System.out.println("How Many Mines Do You Want?");
                 _mines = Integer.parseInt(awaitInput());
+                if (_mines >= size*size){
+                    throw new Exception("Too many mines! " + _mines + " Out Of " + (size*size) + " Tiles!");
+                }
             } else {
                 _mines = (size * size) / 4;
             }
-
             grid = new Grid(size, _mines);
             update();
+
         } catch (Exception e) {
             System.out.println("ERROR!: " + e + "\nPlease Try Again");
             startGame();
